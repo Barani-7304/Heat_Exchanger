@@ -1,6 +1,6 @@
 
 
-def tube_side_calculation(m_cold, D_i, D_o, k_tube, rho=1000, mu=0.83e-3, Cp=4180, k=0.6, n_tubes=52):
+def tube_side_calculation(m_cold, D_i, D_o, k_tube, rho=1000, mu=0.83e-3, Cp=4180, k, n_tubes):
     """
     Calculate tube-side fluid velocity, Reynolds number, Nusselt number,
     and convective heat transfer coefficient.

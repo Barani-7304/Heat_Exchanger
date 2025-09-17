@@ -26,7 +26,7 @@ def heat_exchanger_balance(m_hot, cp_hot, Th_in=None, Th_out=None,
                 Th_in = Th_out + q / (m_hot * cp_hot)
             else:  # Th_out is None
                 q = m_cold * cp_cold * (Tc_out - Tc_in)
-                Th_out = Th_in - q / (m_hot * cp_hot)
+                Th_out = int(Th_in - q / (m_hot * cp_hot))
         else:
             # Cold side unknown
             if Tc_in is None:
@@ -34,7 +34,7 @@ def heat_exchanger_balance(m_hot, cp_hot, Th_in=None, Th_out=None,
                 Tc_in = Tc_out - q / (m_cold * cp_cold)
             else:  # Tc_out is None
                 q = m_hot * cp_hot * (Th_in - Th_out)
-                Tc_out = Tc_in + q / (m_cold * cp_cold)
+                Tc_out = int(Tc_in + q / (m_cold * cp_cold))
     else:
         raise ValueError("Too many unknowns: only one temperature can be missing.")
 
@@ -52,4 +52,4 @@ def log_mean_temp_difference(Th_in, Th_out, Tc_in, Tc_out):
     if dT1 == dT2:  # avoid log(1)=0
         return dT1
     else:
-        return (dT1 - dT2) / (np.log(dT1 / dT2))
+        return int((dT1 - dT2) / (np.log(dT1 / dT2)))
